@@ -1,6 +1,7 @@
-import { describe, test, expect } from 'vitest'
+import { describe, it, expect } from 'vitest'
 
 import solvePart1 from './part1';
+import solvePart2 from './part2';
 
 const input = `
 1000
@@ -21,7 +22,22 @@ const input = `
 
 
 describe('day 1', () => {
-  test('solvePart1', () => {
-    expect(solvePart1(input)).toBe(24000);
-  })
-})
+
+  describe('part 1', () => {
+
+    it('finds the sum of numbers in the largest group', () => {
+      expect(solvePart1(input)).toBe(24000);
+    });
+
+  });
+
+
+  describe('part 2', () => {
+
+    it('finds the sum of numbers of the three largest group', () => {
+      expect(solvePart2(input)).toBe(45000);
+    });
+
+  });
+  
+});
