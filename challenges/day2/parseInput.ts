@@ -1,5 +1,7 @@
 const parseInput = (input: string): string[][] => {
-  return input.split('\n')
+  return input
+    .trim()
+    .split('\n')
     .map(line => line.split(' '));
 };
 
