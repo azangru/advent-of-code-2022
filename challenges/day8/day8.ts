@@ -8,5 +8,5 @@ const pathToInput = path.resolve(__dirname, './input.txt');
 const input = fs.readFileSync(pathToInput, { encoding: 'utf-8' });
 
 
-console.log('solution to day 7 part 1:', solvePart1(input));
-console.log('solution to day 7 part 2:', solvePart2(input));
+console.log('solution to day 8 part 1:', solvePart1(input));
+console.log('solution to day 8 part 2:', solvePart2(input));
