@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest';
 
 import solvePart1 from './part1';
-import solvePart2, { chase } from './part2';
+import solvePart2 from './part2';
 
 const input = `
 R 4
