@@ -28,6 +28,7 @@ const parseMonkeyData = (input: string) => {
     monkeyId,
     startItems,
     operationFn,
+    dividesBy: divisibleBy,
     getNextMonkeyId
   };
 };

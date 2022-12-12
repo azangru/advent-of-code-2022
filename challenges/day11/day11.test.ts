@@ -3,9 +3,8 @@ import fs from 'fs';
 import { describe, test, expect } from 'vitest';
 
 import parseInput from './parseInput';
-import parstInput2 from './parseInput2';
 import solvePart1, { Monkey as MonkeyPart1, MonkeyBusiness as MonkeyBusiness1 } from './part1';
-import solvePart2, { Monkey as MonkeyPart2, MonkeyBusiness as MonkeyBusiness2 } from './part2';
+import solvePart2, { MonkeyBusiness as MonkeyBusiness2 } from './part2';
 
 const input = fs.readFileSync(path.resolve(__dirname, './test_inputs/1.txt'), { encoding: 'utf-8' });
 
@@ -76,21 +75,8 @@ describe('part 1', () => {
 });
 
 describe('part 2', () => {
-
-  const getMonkeys = (input: string) => {
-    return parstInput2(input).map(data => {
-      return new MonkeyPart2(
-        data.monkeyId,
-        data.startItems,
-        data.operationFn,
-        data.getNextMonkeyId
-      );
-    });
-  };
-
   test('after 20 rounds', () => {
-    const monkeys = getMonkeys(input);
-    const monkeyBusiness = new MonkeyBusiness2(monkeys);
+    const monkeyBusiness = new MonkeyBusiness2(parseInput(input));
     monkeyBusiness.playRounds(20);
 
     expect(monkeyBusiness.monkeys[0].itemsInspected).toBe(99);
@@ -100,8 +86,7 @@ describe('part 2', () => {
   });
 
   test('after 1000 rounds', () => {
-    const monkeys = getMonkeys(input);
-    const monkeyBusiness = new MonkeyBusiness2(monkeys);
+    const monkeyBusiness = new MonkeyBusiness2(parseInput(input));
     monkeyBusiness.playRounds(1000);
 
     expect(monkeyBusiness.monkeys[0].itemsInspected).toBe(5204);
@@ -109,5 +94,19 @@ describe('part 2', () => {
     expect(monkeyBusiness.monkeys[2].itemsInspected).toBe(199);
     expect(monkeyBusiness.monkeys[3].itemsInspected).toBe(5192);
   });
+
+  test('after 10000 rounds', () => {
+    const monkeyBusiness = new MonkeyBusiness2(parseInput(input));
+    monkeyBusiness.playRounds(10000);
+
+    expect(monkeyBusiness.monkeys[0].itemsInspected).toBe(52166);
+    expect(monkeyBusiness.monkeys[1].itemsInspected).toBe(47830);
+    expect(monkeyBusiness.monkeys[2].itemsInspected).toBe(1938);
+    expect(monkeyBusiness.monkeys[3].itemsInspected).toBe(52013);
+  });
+
+  test('solvePart2', () => {
+    expect(solvePart2(input)).toBe(2713310158);
+  })
 
 });
