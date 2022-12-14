@@ -3,6 +3,7 @@ import parseInput from './parseInput';
 const main = (input: string) => {
   return parseInput(input)
     .map((pair, index) => {
+      console.log(pair, compare(pair as [string, string]));
       return {
         isInRightOrder: compare(pair as [string, string]),
         index: index + 1
@@ -21,8 +22,6 @@ export const compare = (pair: [string, string]) => {
 type Element = number | number[] | undefined;
 
 const compareElements = (left: Element, right: Element): boolean | null => {
-  let isInOrder: boolean | null = null;
-
   if (typeof left === 'number' && Array.isArray(right)) {
     left = [left];
   } else if (typeof right === 'number' && Array.isArray(left)) {
@@ -31,24 +30,27 @@ const compareElements = (left: Element, right: Element): boolean | null => {
     if (left !== right) {
       return left < right;
     }
-  } else if (!left && right) {
+  } else if (left === undefined && right !== undefined) {
+    // left is shorter than the right; all good
     return true;
-  } else if (!right && left) {
+  } else if (right === undefined && left !== undefined) {
+    // right is shorter than the left
     return false;
-  } else if (!right && !left) {
-    return true;
   }
 
   for (let i = 0; i < (left as number[]).length; i++) {
-    isInOrder = compareElements((left as number[])[i], (right as number[])[i]) ?? null;
+    const isInOrder = compareElements((left as number[])[i], (right as number[])[i]) ?? null;
     
-    if (isInOrder !== null) {
+    if (typeof isInOrder === 'boolean') {
       return isInOrder;
     }
 
   }
 
-  return isInOrder;
+  return null;
 };
 
 export default main;
+
+
+// TODO: compare with this guy's solution? What's the difference? https://github.com/joeleisner/advent-of-code-2022/tree/main/days/13
