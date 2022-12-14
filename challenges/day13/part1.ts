@@ -3,7 +3,6 @@ import parseInput from './parseInput';
 const main = (input: string) => {
   return parseInput(input)
     .map((pair, index) => {
-      console.log(pair, compare(pair as [string, string]));
       return {
         isInRightOrder: compare(pair as [string, string]),
         index: index + 1
@@ -38,13 +37,15 @@ const compareElements = (left: Element, right: Element): boolean | null => {
     return false;
   }
 
-  for (let i = 0; i < (left as number[]).length; i++) {
+  const arrLength = (left as number[]).length > (right as number[]).length
+    ? (left as number[]).length
+    : (right as number[]).length
+  for (let i = 0; i < arrLength; i++) {
     const isInOrder = compareElements((left as number[])[i], (right as number[])[i]) ?? null;
     
     if (typeof isInOrder === 'boolean') {
       return isInOrder;
     }
-
   }
 
   return null;

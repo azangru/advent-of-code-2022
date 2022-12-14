@@ -54,7 +54,7 @@ describe('part 1', () => {
 
 describe('part 2', () => {
 
-  test.only('solvePart2', () => {
+  test('solvePart2', () => {
     console.log(solvePart2(inputPart1));
   });
 

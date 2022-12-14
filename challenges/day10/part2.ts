@@ -21,7 +21,6 @@ const drawLine = (computer: Computer) => {
   let line: string[] = ['#'];
   for (let i = 0; i < LINE_LENGTH; i++) {
     computer.tick();
-    console.log(computer.X);
 
     const position = i + 1;
 
