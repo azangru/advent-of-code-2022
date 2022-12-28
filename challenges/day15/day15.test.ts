@@ -1,6 +1,7 @@
 import { describe, test, expect } from 'vitest';
 
 import * as part1 from './part1';
+import * as part2 from './part2';
 
 const input = `
 Sensor at x=2, y=18: closest beacon is at x=-2, y=15
@@ -21,9 +22,24 @@ Sensor at x=20, y=1: closest beacon is at x=15, y=3
 
 describe('part 1', () => {
 
-  test('foo', () => {
+  test('solvePart1', () => {
     const parsedInput = part1.prepareInput(input);
     expect(part1.countBeaconlessPositions(parsedInput, 10)).toBe(26);
+  });
+
+});
+
+describe('part 2', () => {
+
+  test.only('solvePart2', () => {
+    const parsedInput = part2.prepareInput(input);
+    const missingBeaconPositions = part2.findMissingBeacons(parsedInput, 20);
+    expect(missingBeaconPositions).toEqual([
+      { x: 14, y: 11 }
+    ]);
+
+    expect(part2.getTuningFrequency(missingBeaconPositions[0]))
+      .toBe(56000011);
   });
 
 });
